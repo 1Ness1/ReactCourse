@@ -1,36 +1,33 @@
-import {Component} from "react";
-import './search-panel.css';
+import { Component } from "react";
+import "./search-panel.sass";
 
-class SearchPanel extends Component{
-    constructor(props) {
-        super(props);
+class SearchPanel extends Component {
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            term: ''
-        }
-    }
+    this.state = {
+      term: "",
+    };
+  }
 
+  onUpdateSearch = ({ target }) => {
+    const term = target.value;
 
-    onUpdateSearch = ({target}) => {
-        const term = target.value;
+    this.setState({ term });
+    this.props.onUpdateSearch(term);
+  };
 
-        this.setState({term});
-        this.props.onUpdateSearch(term);
-    }
-
-
-    render() {
-
-        return (
-            <input
-                value={this.state.term}
-                className='form-control search-input'
-                type="text"
-                placeholder='Найти сотрудника'
-                onChange={this.onUpdateSearch}
-            />
-        );
-    }
+  render() {
+    return (
+      <input
+        value={this.state.term}
+        className="form-control search-input"
+        type="text"
+        placeholder="Найти сотрудника"
+        onChange={this.onUpdateSearch}
+      />
+    );
+  }
 }
 
 export default SearchPanel;
